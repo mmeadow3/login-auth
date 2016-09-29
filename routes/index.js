@@ -7,7 +7,7 @@ const RedisStore = require('connect-redis')(session)
 
 const router = Router()
 
-const User = require('/../models/user')
+const User = require('/models/user')
 
 
 router.get('/', (req, res) =>
