@@ -4,10 +4,10 @@ const { Router } = require('express')
 const bcrypt = require('bcrypt')
 const session = require('express-session')
 const RedisStore = require('connect-redis')(session)
+const User = require('../models/user')
 
 const router = Router()
 
-const User = require('../models/user')
 
 
 router.get('/', (req, res) =>
