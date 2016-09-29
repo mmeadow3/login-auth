@@ -1,8 +1,8 @@
 
 const express = require("express");
 const app = express();
-// const session = require('express-session')
-// const RedisStore = require('connect-redis')(session)
+const session = require('express-session')
+const RedisStore = require('connect-redis')(session)
 
 const bodyParser = require("body-parser")
 const routes = require('./routes/') // same as ./routes/index.js
@@ -18,14 +18,14 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // routes
-// app.use(session({
-//   store: new RedisStore({
-//     url: process.env.REDIS_URL || 'redis://localhost:6379',
-//   }),
-//   resave: false,
-//   saveUninitialized: false,
-//   secret: process.env.SESSION_SECRET || 'loginkey',
-// }))
+app.use(session({
+  store: new RedisStore({
+    url: process.env.REDIS_URL || 'redis://localhost:6379',
+  }),
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.SESSION_SECRET || 'loginkey',
+}))
 
 
 
