@@ -37,7 +37,7 @@ router.post('/login', ({ session, body: { email, password } }, res, err) => {
     })
     .then((matches) => {
       if (matches) {
-        session.email = email
+        // session.email = email
         res.redirect('/')
       } else {
         res.render('login', { msg: 'Password does not match' })
