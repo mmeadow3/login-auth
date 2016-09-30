@@ -1,5 +1,9 @@
 extends partials/layout.pug
 
 block content
-  h3 test
-  h1 welcome back 
+  h1 test
+  if email
+
+    h1 Welcome #{email}!
+  else
+    h1 not logged in

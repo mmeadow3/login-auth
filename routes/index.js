@@ -37,7 +37,7 @@ router.post('/login', ({ session, body: { email, password } }, res, err) => {
     })
     .then((matches) => {
       if (matches) {
-        email = email
+        session.email = email
         res.redirect('/')
       } else {
         res.render('login', { msg: 'Password does not match' })
@@ -74,5 +74,33 @@ router.post('/register', ({ body: { email, password, confirmation } }, res, err)
     res.render('register', { msg: 'Password & password confirmation do not match' })
   }
 })
+
+
+
+router.get('/logout', (req, res) =>
+  res.render('logout')
+)
+
+router.post('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) throw err
+    res.redirect('/login')
+  })
+})
+
+module.exports.index = (res, req) => {
+  if (req.session.email) {
+    res.render('/logout', { page: 'logout'})
+  } else {
+    res.redirect('/login')
+  }
+}
+
+module.exports.destroy = (req, res) => {
+  req.session.destroy(err => {
+    if (err) throw err
+    res.redirect('/login')
+  })
+}
 
 module.exports = router

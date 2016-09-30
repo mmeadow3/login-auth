@@ -9,8 +9,15 @@ const routes = require('./routes/') // same as ./routes/index.js
 const { connect } = require('./db/database')
 
 const port = process.env.PORT || 3000
+
+
+
+
 app.set('view engine', 'pug')
-app.locals.body = {} // i.e. value=(body && body.name) vs. value=body.name
+
+app.locals.user = {email: 'mmeadow33@gmail.com'}
+app.locals.errors = {}
+app.locals.body = {}
 //////middleware//////////
 
 
@@ -27,10 +34,9 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'loginkey',
 }))
 
-
-
 app.use((req, res, next) => {
-  app.locals.email = req.user && req.user.email
+  //Since you are not using passport yet you will need to use session
+  app.locals.email = req.session.email
   next()
 })
 

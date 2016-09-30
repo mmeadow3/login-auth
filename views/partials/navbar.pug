@@ -12,6 +12,7 @@ nav.navbar.navbar-inverse.navbar-fixed-top
       ul.nav.navbar-nav
         if email
           li: a(href='#') Logged in as #{email}
+          li: a(href='/logout') Logout
         else
           li(class={ active: page === 'Login' })
             a(href='/login') Login
